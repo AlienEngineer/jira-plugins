@@ -7,6 +7,9 @@ This repo hold custom configurations in lua for the jira command line tool.
 ## installation
 
 ```bash
+# save current configuration
+mv ~/.config/jira{,.bak}
+
 git clone https://github.com/AlienEngineer/jira-plugins ~/.config/jira
 ```
 
