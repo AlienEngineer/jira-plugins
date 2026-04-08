@@ -40,4 +40,18 @@
 --   jira_context.selected_pbi.priority     -- e.g. "High" (may be nil)
 --   jira_context.selected_pbi.story_points -- number (may be nil)
 --   jira_context.selected_pbi.labels       -- array of label strings
---
+
+dofile("utils/estimation.lua")
+
+jira.columns.add(" SPs ", function(view)
+	return Get_story_points(view.pbi)
+end)
+
+jira.columns.add("Estimation Accuracy", function(view)
+	local sp = Get_story_points(view.pbi)
+	if sp == "N/A" then
+		return "N/A"
+	end
+
+	return Calculate_accuracy(view.pbi, view.pbis)
+end)
